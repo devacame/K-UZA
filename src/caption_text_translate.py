@@ -16,3 +16,6 @@ def trans(text, target = 'ko'):
     # 번역한 문자열 리턴
     return translation['translatedText']
 
+
+    #주석
+
