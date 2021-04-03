@@ -1,10 +1,12 @@
-from youtube_dl import YoutubeDL
+from pytube import YouTube
+from os import rename
 
 
 def get_youtube_audio(url):
+    yt = YouTube(url)
     try:
-        audio_dl = YoutubeDL({'format': 'bestaudio'})
-        audio_dl.extract_info(url)
+        video = yt.streams.filter(only_audio=True).first().download()
     except Exception:
-        return "오디오 처리에 실패하였습니다."
+        return 'Fatal:오디오 처리에 실패하였습니다.'
+    rename(video, 'audio.mp3')
     return None
