@@ -1,21 +1,18 @@
-from google.cloud import translate
+from google.cloud import translate_v2 as translate
 import os
-# 구글 번역 api 인증 키 파일 설정
-# 다운로드한 json파일 위치를 넣어주면 된다.
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = ''
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/kimtaeyi/python_workspace/KUZA-DEV-a933fc24c14d.json'
 
-# 번역 함수 
-def trans(text, target = 'ko'):
-    # 클래스 생성 
-    translate_client = translate.Client()
-    # 번역 시작
-    translation = translate_client.translate(
-        text,
-        target_language=target)
+def trans(text, target_lang):
+    try:
+        client = translate.Client()
+        result = client.translate(text, target_lang)
+    except:
+        return None
 
-    # 번역한 문자열 리턴
-    return translation['translatedText']
+    return result['translatedText']
+
+text = "Hello"
+trans(text,'ko')
 
 
-    #주석
 
