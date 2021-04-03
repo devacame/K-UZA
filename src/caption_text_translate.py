@@ -11,8 +11,8 @@ def trans(text, target_lang):
 
     return result['translatedText']
 
-text = "Hello"
-trans(text,'ko')
+#text = "Hello"
+#trans(text,'ko')
 
 
 
