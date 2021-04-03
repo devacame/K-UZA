@@ -1,6 +1,6 @@
 from google.cloud import translate_v2 as translate
 import os
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/kimtaeyi/python_workspace/KUZA-DEV-a933fc24c14d.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = ''
 
 def trans(text, target_lang):
     try:
@@ -10,9 +10,6 @@ def trans(text, target_lang):
         return None
 
     return result['translatedText']
-
-#text = "Hello"
-#trans(text,'ko')
 
 
 
