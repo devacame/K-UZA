@@ -1,4 +1,4 @@
-from setup_google_storage_dev import create_bucket, upload_audio_file, delete_audio_file
+from setup_google_storage import create_bucket, upload_audio_file, delete_audio_file
 from youtube_download import get_youtube_audio
 from caption_stt import run_stt
 from google.cloud import storage
@@ -6,7 +6,7 @@ from os import environ
 environ['GOOGLE_APPLICATION_CREDENTIALS'] = './GCP-API-KEY.json'
 
 
-def run_backend(url, lang):
+def run_backend(url, lang='en-US'):
     caption = ''
     try:
         audio_state = get_youtube_audio(url)
