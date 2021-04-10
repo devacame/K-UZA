@@ -18,7 +18,7 @@ def run_stt(lang, bucket_name):
         response = operation.result(timeout=1500)
         text = ''
         for result in response.results:
-            text += result.alternatives[0].transcript
+            text += result.alternatives[0].transcript + ' '
     except Exception:
         return 'Fatal:자막 생성에 실패하였습니다.(시간 초과)'
     return text
