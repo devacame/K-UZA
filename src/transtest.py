@@ -1,17 +1,30 @@
-from google.cloud import translate_v3beta1 as translate
+from google.cloud import translate
 from google.cloud import translate_v2 as translate
 import os
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/kimtaeyi/python_workspace/KUZA-DEV-a933fc24c14d.json'
 
 def Translate(text, Source_lang, target_language):
     if Source_lang == None: 
         try:
             client = translate.Client()
             result = client.translate(text, target_language)
-            print(result['translatedText'])
+            return (result['translatedText'])
+        except:
+            return None
+    else:
+        try:
+            response = client.translate_text(
+            request={
+                "parent": parent,
+                "contents": [text],
+                "mime_type": "text/plain",
+                "source_language_code": Source_lang,
+                "target_language_code": target_language,
+                }
+            )
+            Word_translate = []
+            for translation in response.translations:
+                Word_translate.append(translation.translated_text)
+            return " ".join(Word_translate)
         except:
             return None
 
-texts = 'Thanks for studying Today!\
-The important thing is to take action, do something every day, and little by little, you will get there.'
-Translate(texts, None, 'ko')
