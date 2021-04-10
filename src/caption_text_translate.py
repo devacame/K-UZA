@@ -1,6 +1,6 @@
 from google.cloud import translate_v2 as translate
 import os
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = ''
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/kimtaeyi/python_workspace/KUZA-DEV-a933fc24c14d.json'
 
 def trans(text, target_lang):
     try:
