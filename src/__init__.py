@@ -44,7 +44,7 @@ def run_backend(url, stt_lang='en-US'):
             raise Exception
 
     except Exception:
-        return f'Fatal:알 수 없는 에러가 발생하였습니다.\n{translated_text}'
+        return f'Fatal:알 수 없는 에러가 발생하였습니다.'
 
     deletion_state = delete_audio_file()
     if deletion_state:
