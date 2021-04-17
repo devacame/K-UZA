@@ -1,11 +1,12 @@
 from google.cloud import storage
 from os import remove
+from time import sleep
 
 
-def create_bucket(bucket_name):
+def create_bucket():
     try:
         storage_client = storage.Client()
-        bucket = storage_client.bucket(bucket_name)
+        bucket = storage_client.bucket('kuza_audio')
         bucket.storage_class = 'STANDARD'
         storage_client.create_bucket(bucket, location='ASIA-NORTHEAST3')
     except Exception:
@@ -13,10 +14,10 @@ def create_bucket(bucket_name):
     return None
 
 
-def upload_audio_file(bucket_name):
+def upload_audio_file():
     try:
         storage_client = storage.Client()
-        bucket = storage_client.bucket(bucket_name)
+        bucket = storage_client.bucket('kuza_audio')
         blob = bucket.blob('audio.mp3')
         blob.upload_from_filename('./audio.mp3')
     except Exception:
@@ -24,10 +25,10 @@ def upload_audio_file(bucket_name):
     return None
 
 
-def delete_audio_file(bucket_name):
+def delete_audio_file():
     try:
         storage_client = storage.Client()
-        bucket = storage_client.bucket(bucket_name)
+        bucket = storage_client.bucket('kuza_audio')
         blob = bucket.blob('audio.mp3')
         blob.delete()
         remove('./audio.mp3')

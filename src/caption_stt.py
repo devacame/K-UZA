@@ -1,10 +1,10 @@
 from google.cloud import speech_v1p1beta1 as speech
 
 
-def run_stt(lang, bucket_name):
+def run_stt(lang):
     try:
         client = speech.SpeechClient()
-        audio = speech.RecognitionAudio(uri=f'gs://{bucket_name}/audio.mp3')
+        audio = speech.RecognitionAudio(uri=f'gs://kuza_audio/audio.mp3')
         config = speech.RecognitionConfig(
             encoding=speech.RecognitionConfig.AudioEncoding.MP3,
             sample_rate_hertz=16000,

@@ -104,6 +104,8 @@ celerybeat.pid
 # Environments
 .env
 .venv
+.penv
+penv/
 env/
 venv/
 ENV/
@@ -130,3 +132,5 @@ dmypy.json
 
 .DS_Store
 *.json
+
+*.mp3
