@@ -11,11 +11,9 @@ class KUZA(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.caption = ''
-        self.youtube_url = ''
-        self.initUI(caption, youtube_url)
+        self.initUI()
 
-    def initUI(self, caption, youtube_url):
+    def initUI(self):
         self.video_url_input = QLineEdit()
         self.video_url_input.setPlaceholderText('유튜브 URL을 입력하세요.')
 
@@ -52,10 +50,7 @@ class KUZA(QWidget):
         self.search_bar_groupbox.setMinimumWidth(850)
 
         self.webview = QWebEngineView()
-        youtube_id_idx = youtube_url.find('watch?v=')+len('watch?v=')
-        youtube_id = youtube_url[youtube_id_idx:]
-        self.webview.load(
-            QUrl('https://www.youtube.com/embed/' + youtube_id))
+        self.webview.load(QUrl('https://www.youtube.com'))
         self.webview_groupbox = QGroupBox()
         webview_grid = QGridLayout()
         webview_grid.addWidget(self.webview)
@@ -66,7 +61,6 @@ class KUZA(QWidget):
         self.caption_text_groupbox = QGroupBox()
         caption_grid = QGridLayout()
         self.caption_text_display = QTextEdit()
-        self.caption_text_display.setText(self.caption)
         caption_grid.addWidget(self.caption_text_display)
         self.caption_text_groupbox.setLayout(caption_grid)
 
