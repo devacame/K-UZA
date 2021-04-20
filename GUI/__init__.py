@@ -50,14 +50,13 @@ class KUZA(QWidget):
         self.search_bar_groupbox.setMinimumWidth(850)
 
         self.webview = QWebEngineView()
-        self.webview.load(QUrl('https://www.youtube.com'))
+        self.webview.load(QUrl('about:blank'))
         self.webview_groupbox = QGroupBox()
         webview_grid = QGridLayout()
         webview_grid.addWidget(self.webview)
         self.webview_groupbox.setLayout(webview_grid)
         self.webview.show()
 
-        self.caption = caption
         self.caption_text_groupbox = QGroupBox()
         caption_grid = QGridLayout()
         self.caption_text_display = QTextEdit()
