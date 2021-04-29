@@ -15,7 +15,7 @@ def run_stt(lang):
         return 'Fatal:STT 서비스 연결에 실패하였습니다.'
 
     try:
-        response = operation.result(timeout=1500)
+        response = operation.result(timeout=6000)
         text = ''
         for result in response.results:
             text += result.alternatives[0].transcript + ' '
