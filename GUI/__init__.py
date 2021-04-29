@@ -75,8 +75,7 @@ class KUZA(QWidget):
         self.setLayout(grid)
 
         self.setWindowTitle('K-UZA')
-        self.setGeometry(0, 0, 1920, 1080)
-        self.show()
+        self.showMaximized()
 
     def submit(self):
         url = self.video_url_input.text().strip()
