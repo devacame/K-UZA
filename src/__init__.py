@@ -18,10 +18,12 @@ def run_backend(url, stt_lang='en-US'):
     except Exception:
         return 'GCP 키가 없습니다.'
     caption = ''
+    error_message = ''
 
     try:
         audio_state = get_youtube_audio(url)
         if audio_state:
+            error_message = audio_state
             raise Exception
 
         try:
@@ -29,22 +31,29 @@ def run_backend(url, stt_lang='en-US'):
         except Exception:
             bucket_creation_state = create_bucket()
             if bucket_creation_state:
+                error_message = bucket_creation_state
                 raise Exception
 
         upload_state = upload_audio_file()
         if upload_state:
+            error_message = upload_state
             raise Exception
 
         caption = run_stt(stt_lang)
         if caption.startswith('Fatal:'):
+            error_message = caption
             raise Exception
 
         translated_text = translate(caption)
         if translated_text.startswith('Fatal:'):
+            error_message = translated_text
             raise Exception
 
     except Exception:
-        return f'Fatal:알 수 없는 에러가 발생하였습니다.'
+        deletion_state = delete_audio_file()
+        if deletion_state:
+            return deletion_state
+        return error_message
 
     deletion_state = delete_audio_file()
     if deletion_state:
