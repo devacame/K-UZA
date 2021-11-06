@@ -49,14 +49,12 @@ def run_backend(url, stt_lang='en-US'):
             error_message = translated_text
             raise Exception
 
-    except Exception:
+    except Exception as e:
+        print(e)
+
+    finally:
         deletion_state = delete_audio_file()
         if deletion_state:
             return deletion_state
-        return error_message
-
-    deletion_state = delete_audio_file()
-    if deletion_state:
-        return deletion_state
 
     return translated_text
